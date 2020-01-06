@@ -9,4 +9,13 @@
                           (partial every?))]
     (boolean (some is-superset? winning-combinations))))
 
-(won? [1 2 3])
+(defn make-move []
+  (loop [move (read-line) moves []]
+    (let [current-moves (->> move
+                             (Integer/parseInt)
+                             (conj moves))]
+      (if (won? current-moves)
+        (println "Hurrayyy!!! You have won")
+        (recur (read-line) current-moves)))))
+
+(make-move)
